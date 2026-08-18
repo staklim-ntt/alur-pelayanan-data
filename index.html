@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pelayanan Data & Informasi | Stasiun Klimatologi NTT</title>
+<style>
+:root{
+  --blue:#0756a4;
+  --navy:#063b78;
+  --green:#169447;
+  --orange:#f28c18;
+  --sky:#eaf6fc;
+  --text:#18324d;
+  --muted:#5c7187;
+  --white:#fff;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  font-family:Inter,Segoe UI,Arial,sans-serif;
+  color:var(--text);
+  background:#f4f9fc;
+  overflow-x:hidden;
+}
+a{text-decoration:none;color:inherit}
+
+/* ================= HEADER ================= */
+.header{
+  background:linear-gradient(135deg,#063b78 0%,#0872b8 70%,#159447 100%);
+  color:#fff;
+  padding:24px clamp(20px,6vw,72px) 26px;
+  position:relative;
+  overflow:hidden;
+}
+.header:after{
+  content:"";
+  position:absolute;
+  right:-100px;
+  bottom:-110px;
+  width:420px;
+  height:180px;
+  border-radius:50%;
+  border:28px solid rgba(255,255,255,.15);
+}
+.brand{
+  display:flex;
+  align-items:center;
+  gap:18px;
+  position:relative;
+  z-index:1;
+  min-width:0;
+}
+.logo{
+  width:76px;
+  height:76px;
+  flex:0 0 76px;
+  border-radius:50%;
+  background:#fff;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  border:3px solid #fff;
+  box-shadow:0 5px 18px rgba(0,0,0,.18);
+  overflow:hidden;
+}
+.logo img{
+  width:100%;
+  height:100%;
+  max-width:100%;
+  max-height:100%;
+  object-fit:contain;
+  display:block;
+}
+.brand-copy{
+  min-width:0;
+}
+.brand h1{
+  font-size:clamp(21px,3vw,34px);
+  line-height:1.15;
+  margin:0 0 7px;
+  font-weight:800;
+}
+.brand p{
+  margin:0;
+  font-size:15px;
+  line-height:1.5;
+  opacity:.92;
+  max-width:900px;
+}
+.nav{
+  margin-top:20px;
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+  position:relative;
+  z-index:1;
+}
+.nav a{
+  padding:10px 16px;
+  border:1px solid rgba(255,255,255,.35);
+  border-radius:999px;
+  font-size:13px;
+  transition:.2s ease;
+}
+.nav a:hover{background:#fff;color:var(--navy)}
+
+/* ================= HERO ================= */
+.hero{
+  padding:55px clamp(20px,6vw,72px) 35px;
+  background:linear-gradient(180deg,#fff,#edf8fc);
+}
+.hero .eyebrow{
+  color:var(--green);
+  font-weight:800;
+  letter-spacing:2px;
+  font-size:13px;
+}
+.hero h2{
+  font-size:clamp(34px,5vw,56px);
+  line-height:1.08;
+  color:var(--navy);
+  margin:12px 0 8px;
+}
+.hero p{
+  font-size:18px;
+  color:var(--muted);
+  max-width:850px;
+  line-height:1.65;
+  margin:0;
+}
+
+/* ================= CONTENT ================= */
+.container{
+  max-width:1180px;
+  margin:auto;
+  padding:0 22px 55px;
+}
+.section{margin-top:30px}
+.section-title{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  margin-bottom:18px;
+}
+.section-title .bar{
+  width:7px;
+  height:30px;
+  background:var(--blue);
+  border-radius:5px;
+}
+.section-title h3{
+  margin:0;
+  color:var(--navy);
+  font-size:25px;
+}
+.grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:16px;
+}
+.card{
+  background:#fff;
+  border:1px solid #d9e8f2;
+  border-radius:16px;
+  padding:22px;
+  box-shadow:0 7px 24px rgba(7,66,110,.07);
+}
+.card h4{margin:0 0 10px;color:var(--navy);font-size:18px}
+.card p{margin:0;color:#50677d;line-height:1.65;font-size:14px}
+.badge{
+  display:inline-block;
+  background:#eaf7ee;
+  color:#147e3e;
+  padding:6px 10px;
+  border-radius:999px;
+  font-size:12px;
+  font-weight:800;
+  margin-bottom:10px;
+}
+.req-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.req-card{
+  background:#fff;
+  border-radius:16px;
+  padding:24px;
+  border:1px solid #dce9f2;
+}
+.req-card h4{margin:0 0 15px;color:var(--navy);font-size:19px}
+ol{margin:0;padding-left:24px}
+li{padding:7px 0;line-height:1.55}
+.flow-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.flow{
+  background:#fff;
+  border-radius:18px;
+  overflow:hidden;
+  border:1px solid #dce9f2;
+}
+.flow-head{padding:14px 20px;color:#fff;font-weight:800;font-size:18px}
+.green{background:var(--green)}
+.orange{background:var(--orange)}
+.flow ol{padding:14px 28px 18px;margin:0}
+.flow li::marker{font-weight:800}
+.steps{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+.step{
+  display:flex;
+  gap:14px;
+  background:#fff;
+  border:1px solid #dce9f2;
+  border-radius:15px;
+  padding:17px;
+}
+.num{
+  flex:0 0 34px;
+  height:34px;
+  border-radius:50%;
+  background:var(--blue);
+  color:#fff;
+  display:grid;
+  place-items:center;
+  font-weight:800;
+}
+.step strong{display:block;color:var(--navy);margin-bottom:5px}
+.step span{font-size:13px;line-height:1.5;color:#60768b}
+.hours{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.hours .box{
+  background:#fff;
+  border-radius:18px;
+  padding:25px;
+  border:1px solid #dce9f2;
+}
+.hours h4{margin:0 0 8px;color:var(--navy)}
+.time{font-size:24px;font-weight:800;color:var(--blue);margin:8px 0}
+.contact{
+  background:linear-gradient(135deg,#063b78,#0871b6);
+  color:#fff;
+  border-radius:20px;
+  padding:28px;
+  display:flex;
+  justify-content:space-between;
+  gap:20px;
+  align-items:center;
+}
+.contact h3{margin:0 0 8px;font-size:24px}
+.contact p{margin:0;opacity:.9;line-height:1.6}
+.wa{
+  background:#19a957;
+  padding:12px 18px;
+  border-radius:999px;
+  font-weight:800;
+  white-space:nowrap;
+}
+.footer{
+  background:#062f60;
+  color:#fff;
+  text-align:center;
+  padding:20px;
+  font-size:13px;
+}
+.note{font-size:12px;color:#71869a;margin-top:10px}
+
+/* ================= TABLET ================= */
+@media (max-width:900px){
+  .grid{grid-template-columns:1fr 1fr}
+  .req-grid,.flow-grid,.hours{grid-template-columns:1fr}
+  .header{padding-left:5%;padding-right:5%}
+  .hero{padding-left:5%;padding-right:5%}
+}
+
+/* ================= MOBILE ================= */
+@media (max-width:600px){
+  .header{
+    padding:24px 18px 26px;
+  }
+
+  .header:after{
+    right:-160px;
+    bottom:-100px;
+    width:360px;
+    height:160px;
+  }
+
+  .brand{
+    flex-direction:column;
+    align-items:center;
+    text-align:center;
+    gap:14px;
+  }
+
+  .logo{
+    width:76px;
+    height:76px;
+    flex-basis:76px;
+  }
+
+  .brand-copy{
+    width:100%;
+  }
+
+  .brand h1{
+    font-size:32px;
+    line-height:1.12;
+    margin-bottom:10px;
+    max-width:100%;
+  }
+
+  .brand p{
+    font-size:15px;
+    line-height:1.5;
+    max-width:100%;
+  }
+
+  .nav{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:9px;
+    margin-top:22px;
+  }
+
+  .nav a{
+    text-align:center;
+    padding:11px 7px;
+    font-size:13px;
+    white-space:normal;
+  }
+
+  .hero{
+    padding:36px 20px 30px;
+  }
+
+  .hero .eyebrow{
+    font-size:11px;
+    letter-spacing:1.6px;
+  }
+
+  .hero h2{
+    font-size:36px;
+    line-height:1.1;
+    margin:10px 0 12px;
+  }
+
+  .hero p{
+    font-size:16px;
+    line-height:1.55;
+  }
+
+  .container{
+    padding:0 15px 40px;
+  }
+
+  .section{
+    margin-top:26px;
+  }
+
+  .section-title{
+    gap:9px;
+    margin-bottom:14px;
+  }
+
+  .section-title .bar{
+    width:6px;
+    height:26px;
+  }
+
+  .section-title h3{
+    font-size:21px;
+  }
+
+  .grid,.req-grid,.flow-grid,.steps,.hours{
+    grid-template-columns:1fr;
+  }
+
+  .card,.req-card{
+    padding:19px;
+  }
+
+  .flow-head{
+    font-size:17px;
+  }
+
+  .flow ol{
+    padding-left:28px;
+    padding-right:20px;
+  }
+
+  .step{
+    padding:16px;
+  }
+
+  .hours .box{
+    padding:20px;
+  }
+
+  .time{
+    font-size:20px;
+  }
+
+  .contact{
+    flex-direction:column;
+    align-items:stretch;
+    padding:22px;
+  }
+
+  .contact h3{
+    font-size:21px;
+  }
+
+  .wa{
+    text-align:center;
+    white-space:normal;
+  }
+}
+
+/* ================= VERY SMALL PHONES ================= */
+@media (max-width:380px){
+  .brand h1{font-size:28px}
+  .brand p{font-size:14px}
+  .hero h2{font-size:32px}
+  .nav a{font-size:12px;padding:10px 5px}
+}
+</style>
+</head>
+<body>
+
+<header class="header">
+  <div class="brand">
+    <div class="logo"><img src="logo-bmkg.png" alt="Logo BMKG"></div>
+    <div class="brand-copy">
+      <h1>Stasiun Klimatologi Kelas I Nusa Tenggara Timur</h1>
+      <p>Pelayanan Jasa dan Informasi • Data Meteorologi, Klimatologi, dan Informasi Pendukung</p>
+    </div>
+  </div>
+  <nav class="nav">
+    <a href="#jenis">Jenis Layanan</a>
+    <a href="#persyaratan">Persyaratan</a>
+    <a href="#alur">Alur Pelayanan</a>
+    <a href="#waktu">Waktu & Kontak</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <div class="eyebrow">PELAYANAN DATA & INFORMASI BMKG NTT</div>
+  <h2>Data dan Informasi untuk Kebutuhan Anda</h2>
+  <p>
+    Halaman ini menjelaskan jenis layanan, persyaratan, prosedur, serta waktu pelayanan
+    jasa dan informasi di Stasiun Klimatologi Kelas I Nusa Tenggara Timur.
+  </p>
+</section>
+
+<main class="container">
+
+<section id="jenis" class="section">
+  <div class="section-title"><span class="bar"></span><h3>Jenis Layanan</h3></div>
+  <div class="grid">
+    <article class="card">
+      <span class="badge">PNBP</span>
+      <h4>Layanan Berbayar</h4>
+      <p>Informasi atau jasa komersial yang dikenakan tarif resmi sesuai ketentuan yang berlaku.</p>
+      <p class="note"><strong>Target pengguna:</strong> perusahaan swasta, industri, konsultan, perorangan, dan kegiatan komersial.</p>
+    </article>
+    <article class="card">
+      <span class="badge">Tarif Rp0,-</span>
+      <h4>Layanan Tanpa Tarif</h4>
+      <p>Layanan informasi atau jasa tertentu yang dibebaskan dari tarif sesuai kriteria dan ketentuan yang berlaku.</p>
+      <p class="note"><strong>Target pengguna:</strong> instansi pemerintah, penanggulangan bencana, pendidikan/penelitian, mahasiswa, serta kegiatan sosial/keagamaan.</p>
+    </article>
+    <article class="card">
+      <span class="badge">Konsultasi</span>
+      <h4>Informasi & Jasa</h4>
+      <p>Pelayanan data, informasi, dan jasa konsultasi sesuai kebutuhan pemohon serta ketersediaan data dan layanan BMKG.</p>
+    </article>
+  </div>
+</section>
+
+<section id="persyaratan" class="section">
+  <div class="section-title"><span class="bar"></span><h3>Persyaratan Pengajuan</h3></div>
+  <div class="req-grid">
+    <div class="req-card">
+      <h4>Persyaratan Tarif Rp0,-</h4>
+      <ol>
+        <li>Kartu Identitas/KTM/KTP.</li>
+        <li>Surat permohonan resmi bertanda tangan pimpinan/dekan/instansi yang ditujukan kepada Kepala Stasiun BMKG setempat.</li>
+        <li>Proposal penelitian (khusus mahasiswa/peneliti) yang telah ditandatangani penguji dan pembimbing, atau keterangan resmi terkait jenis kegiatan sosial/keagamaan/penanggulangan bencana.</li>
+        <li>Materai sesuai ketentuan.</li>
+        <li>Mengisi 2 surat pernyataan yang disediakan oleh BMKG.</li>
+      </ol>
+    </div>
+    <div class="req-card">
+      <h4>Persyaratan Layanan Berbayar (PNBP)</h4>
+      <ol>
+        <li>Surat permohonan resmi bertanda tangan pimpinan, ditujukan kepada Kepala Stasiun BMKG setempat.</li>
+        <li>Kartu Identitas/KTP/Identitas Perusahaan.</li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<section id="alur" class="section">
+  <div class="section-title"><span class="bar"></span><h3>Alur Prosedur Pelayanan</h3></div>
+  <div class="flow-grid">
+    <div class="flow">
+      <div class="flow-head green">Tarif Rp0,-</div>
+      <ol>
+        <li><strong>Kelengkapan Berkas</strong><br>Permohonan mengikuti formulir.</li>
+        <li><strong>Kelengkapan Berkas</strong><br>Petugas memvalidasi kelengkapan berkas serta kesesuaian kategori syarat tarif.</li>
+        <li><strong>Proses Data</strong><br>Petugas menyiapkan informasi atau jasa konsultasi sesuai permintaan pemohon.</li>
+        <li><strong>Penyerahan Hasil</strong><br>Dokumen atau softcopy data dikirimkan melalui kanal yang disepakati atau dapat diambil langsung ke kantor.</li>
+        <li><strong>SKM</strong><br>Pemohon mengisi Survei Kepuasan Masyarakat.</li>
+      </ol>
+    </div>
+    <div class="flow">
+      <div class="flow-head orange">Tarif Berbayar (PNBP)</div>
+      <ol>
+        <li><strong>Verifikasi Petugas</strong><br>Petugas BMKG memvalidasi kelengkapan berkas serta permohonan.</li>
+        <li><strong>Proses Data</strong><br>Petugas menyiapkan data atau jasa konsultasi sesuai permintaan pemohon dan menyiapkan kode billing pembayaran.</li>
+        <li><strong>Pemohon menerima kode billing SIMPONI</strong><br>Kode digunakan untuk proses pembayaran melalui bank/ATM sesuai ketentuan.</li>
+        <li><strong>Verifikasi pembayaran</strong></li>
+        <li><strong>Analisis Data terbit</strong></li>
+        <li><strong>Pemohon menerima analisis data dan informasi lalu mengisi SKM.</strong></li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="section-title"><span class="bar"></span><h3>Alur Umum Pengajuan</h3></div>
+  <div class="steps">
+    <div class="step"><div class="num">1</div><div><strong>Ajukan permohonan</strong><span>Siapkan dokumen dan sampaikan permohonan sesuai jenis layanan yang dibutuhkan.</span></div></div>
+    <div class="step"><div class="num">2</div><div><strong>Verifikasi dokumen & jenis layanan</strong><span>Petugas memeriksa kelengkapan dokumen dan menentukan kategori layanan.</span></div></div>
+    <div class="step"><div class="num">3</div><div><strong>Proses & penerbitan data/jasa</strong><span>Data atau jasa diproses sesuai permintaan, ketentuan, dan ketersediaan layanan.</span></div></div>
+    <div class="step"><div class="num">4</div><div><strong>Penyerahan data & SKM</strong><span>Hasil diserahkan kepada pemohon, kemudian pemohon mengisi Survei Kepuasan Masyarakat.</span></div></div>
+  </div>
+</section>
+
+<section id="waktu" class="section">
+  <div class="section-title"><span class="bar"></span><h3>Waktu Pelayanan</h3></div>
+  <div class="hours">
+    <div class="box">
+      <h4>Senin – Kamis</h4>
+      <div class="time">08.00–12.00 WITA</div>
+      <div class="time">13.30–15.00 WITA</div>
+      <p class="note">Pelayanan offline pada jam kerja.</p>
+    </div>
+    <div class="box">
+      <h4>Jumat</h4>
+      <div class="time">08.00–11.30 WITA</div>
+      <p class="note">Pelayanan dapat dilakukan secara online melalui kanal komunikasi resmi.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="contact">
+    <div>
+      <h3>Butuh informasi atau pengajuan layanan?</h3>
+      <p>Hubungi Stasiun Klimatologi Kelas I Nusa Tenggara Timur melalui kanal pelayanan resmi.</p>
+    </div>
+    <a class="wa" href="https://wa.me/6281338355845" target="_blank" rel="noopener">WhatsApp: 0813 3835 5845</a>
+  </div>
+</section>
+
+</main>
+<footer class="footer">Stasiun Klimatologi Kelas I Nusa Tenggara Timur • BMKG</footer>
+</body>
+</html>
